@@ -32,7 +32,7 @@ First you need to invoke the module
 
 ```
 module "tags" {
-  source = ""
+  source = "git::git@github.com:Updater/simple-aws-tags.git"
   environment_tag = "${var.environment_tag}"
   owner_tag = "${var.owner_tag}"
   product_tag = "product-tag-value"
