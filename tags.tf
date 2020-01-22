@@ -11,6 +11,7 @@ variable "tf_workspace_tag" {
 
 locals {
   tags = "${merge(map("Owner", var.owner_tag), map("Environment", var.environment_tag), map("Product", var.product_tag), map("Division", var.division_tag), map("Project", var.project_tag), map("TFWorkspace", var.tf_workspace_tag))}"
+  ruby_string_tags = "{ 'Owner' => '${var.owner_tag}', 'Environment' => '${var.environment_tag}', 'Product' => '${var.product_tag}', 'Division' => '${var.division_tag}', 'Project' => '${var.project_tag}', 'TFWorkspace' => '${var.tf_workspace_tag}' }"
 }
 
 
@@ -34,4 +35,8 @@ output "asg_tags" {
 
 output "tags" {
   value = "${local.tags}"
+}
+
+output "ruby_string_tags" {
+  value = "${local.ruby_string_tags}"
 }
