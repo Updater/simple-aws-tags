@@ -60,7 +60,7 @@ data "null_data_source" "asg_tags" {
 }
 
 output "asg_tags" {
-  value       = [data.null_data_source.asg_tags.*.outputs]
+  value       = data.null_data_source.asg_tags.*.outputs
   description = "Tags as a list of maps for ASGs"
 }
 
