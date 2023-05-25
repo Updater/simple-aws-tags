@@ -40,10 +40,12 @@ locals {
     },
   )
 
+  tags_clean = { for k, v in local.tags : k => v if v != "" }
+
   ruby_string_tags = "{ 'Owner' => '${var.owner_tag}', 'Environment' => '${var.environment_tag}', 'Product' => '${var.product_tag}', 'Division' => '${var.division_tag}', 'Project' => '${var.project_tag}', 'TFWorkspace' => '${var.tf_workspace_tag}' }"
 
   asg_tags = [
-    for k, v in local.tags :
+    for k, v in local.tags_clean :
     {
       "key"                 = k
       "value"               = v
@@ -58,7 +60,7 @@ output "asg_tags" {
 }
 
 output "tags" {
-  value = local.tags
+  value = local.tags_clean
 }
 
 output "ruby_string_tags" {
